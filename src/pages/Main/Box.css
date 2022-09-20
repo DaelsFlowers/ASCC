@@ -1,0 +1,53 @@
+.Box {
+  background-color: rgba(102, 51, 153, 0);
+  width: 89%;
+  height: 100%;
+  right: 0;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.content {
+  height: 90%;
+  background-color: rgba(59, 149, 227, 0);
+  margin: auto;
+
+  width: 90%;
+}
+.Datos {
+  position: absolute;
+  width: 37.5%;
+  height: 45%;
+  background: #ffffff;
+  border-radius: 50px 0px 0px 0px;
+}
+.datos {
+  padding: 1rem;
+}
+
+.Clientes {
+  position: absolute;
+  width: 50%;
+  height: 45%;
+  right: 0;
+  margin-right: 4.5rem;
+  background: #ffffff;
+  border-radius: 0px 50px 0px 0px;
+}
+.clientes {
+  padding: 1rem;
+}
+
+.Registros {
+  position: absolute;
+  width: 90%;
+  height: 40%;
+  bottom: 0;
+  margin-bottom: 3rem;
+  background: #ffffff;
+  border-radius: 0px 0px 50px 50px;
+}
+.registros {
+  padding: 1rem;
+}
