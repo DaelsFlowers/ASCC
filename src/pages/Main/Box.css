@@ -10,25 +10,41 @@
 }
 .content {
   height: 90%;
-  background-color: rgba(59, 149, 227, 0);
+  background-color: rgba(0, 136, 255, 0);
   margin: auto;
 
   width: 90%;
 }
 .Datos {
   position: absolute;
-  width: 37.5%;
+  width: 32%;
   height: 45%;
   background: #ffffff;
   border-radius: 50px 0px 0px 0px;
 }
 .datos {
-  padding: 1rem;
+  margin: 1.5rem;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.titulo {
+  font-family: "Rubik", sans-serif;
+  font-size: 28px;
+  text-align: center;
+}
+.tg {
+  position: absolute;
+  margin-top: 3rem;
+  min-height: 80%;
+  min-width: 85%;
+  font-family: "Rubik", sans-serif;
 }
 
 .Clientes {
   position: absolute;
-  width: 50%;
+  width: 57.5%;
   height: 45%;
   right: 0;
   margin-right: 4.5rem;
@@ -36,7 +52,16 @@
   border-radius: 0px 50px 0px 0px;
 }
 .clientes {
-  padding: 1rem;
+  margin: 1.5rem;
+  height: 90%;
+  border: 3px solid rebeccapurple;
+}
+
+.banner {
+  border: 3px solid red;
+}
+.flex-container {
+  display: flex;
 }
 
 .Registros {
@@ -49,5 +74,7 @@
   border-radius: 0px 0px 50px 50px;
 }
 .registros {
-  padding: 1rem;
+  margin: 1.5rem;
+  height: 85%;
+  border: 3px solid rebeccapurple;
 }
