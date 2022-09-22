@@ -1,11 +1,12 @@
 import './App.css';
-import Home from './pages/Home/Home.js';
-import Main from "./pages/Main/Main"
+import Home from "./pages/Login/Home"
+import Main from './pages/Main/Main';
+import NewClient from './pages/newClient/NewClient';
+
 function App() {
   return (
     <div className="App">
-      {/* <Home /> */}
-      <Main />
+      <NewClient />
     </div>
   );
 }

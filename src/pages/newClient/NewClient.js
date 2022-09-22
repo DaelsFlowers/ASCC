@@ -1,19 +1,19 @@
 import React from 'react'
-import "./Main.css"
-import Navbar from '../components/Navbar/Navbar'
-import Box from './Box'
+import "./newClient.css"
+import Navbar from '../components/Navbar/Navbar.js'
+import NewClientForm from './NewClientForm'
 
-const Main = () => {
+const NewClient = () => {
     return (
         <body>
             <div className='navbar2'>
                 <Navbar />
             </div>
             <div className='box'>
-                <Box />
+                <NewClientForm />
             </div>
         </body>
     )
 }
 
-export default Main
+export default NewClient

@@ -1,6 +1,12 @@
 import React from 'react'
 import "./Box.css"
 const Box = () => {
+
+    const clientes = "#";
+    const registros = "#";
+    const empresas = "#";
+    const empleados = "#";
+
     return (
         <div className='Box'>
             <div className='content'>
@@ -10,14 +16,42 @@ const Box = () => {
                         <table class="tg">
                             <thead>
                                 <tr>
-                                    <td class="tg-0lax">TOTAL DE CLIENTES</td>
-                                    <td class="tg-0lax">TOTAL DE REGISTROS</td>
+                                    <td class="tg-0lax">
+                                        <div>
+                                            TOTAL DE CLIENTES
+                                            <div className='datostxt'>
+                                                {clientes}
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="tg-0lax">
+                                        <div>
+                                            TOTAL DE REGISTROS
+                                            <div className='datostxt'>
+                                                {registros}
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="tg-0lax">TOTAL DE EMPRESAS</td>
-                                    <td class="tg-0lax">EMPLEADOS</td>
+                                    <td class="tg-0lax">
+                                        <div>
+                                            TOTAL DE EMPRESAS
+                                            <div className='datostxt'>
+                                                {empresas}
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="tg-0lax">
+                                        <div>
+                                            EMPLEADOS
+                                            <div className='datostxt'>
+                                                {empleados}
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -26,21 +60,33 @@ const Box = () => {
                 <div className='Clientes'>
                     <div className='clientes'>
                         <div className='titulo'>CLIENTES GUARDADOS</div>
-                        <div className='banner'>
-                            <div class="flex-container">
+                        <div class="flex-container">
+                            <div class="categoria">EMPRESA</div>
+                            <div class="categoria">NOMBRE</div>
+                            <div class="categoria">ULTIMO REGISTRO</div>
+                        </div>
+                        {/* ESTA ZONA ES PARA EL BACK */}
+                        <div class="flex-container">
 
-                                <div>1</div>
-
-                                <div>2</div>
-
-                                <div>3</div>
-
-                            </div>
                         </div>
                     </div>
                 </div>
                 <div className='Registros'>
                     <div className='registros'>
+                        <div className='titulo'>CLIENTES GUARDADOS</div>
+                        <div class="flex-container">
+                            <div class="categoriaG">HORA</div>
+                            <div class="categoriaG">EMPLEADO</div>
+                            <div class="categoriaG">EMPRESA</div>
+                            <div class="categoriaG">NOMBRE</div>
+                            <div class="categoriaG">CORREO</div>
+                            <div class="categoriaG">TELEFONO</div>
+                            <div class="categoriaG">ESTATUS</div>
+                        </div>
+                        {/* ESTA ZONA ES PARA EL BACK */}
+                        <div class="flex-container">
+
+                        </div>
                     </div>
                 </div>
             </div>
