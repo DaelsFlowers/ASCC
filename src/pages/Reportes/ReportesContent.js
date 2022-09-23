@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import "./reportesContent.css"
 import msg from "../../image/msg.png"
 import call from "../../image/call.png"
