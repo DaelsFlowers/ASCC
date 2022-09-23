@@ -1,37 +1,37 @@
 import React from 'react'
-import "./newClientForm.css"
+import "./newProspectoForm.css"
 
-const NewClientForm = () => {
+const NewProspectoForm = () => {
 
     return (
-        <div className='newClientForm'>
-            <div className='contentClientForm'>
-                <div className='tittle'> NUEVO CLIENTE</div>
-                <form className='newclientFormform'>
-                    <div className='newClientForm1'>
-                        <div className='newClientFormInput empresa'>
+        <div className='newProspectoForm'>
+            <div className='contentProspectoForm'>
+                <div className='tittle'> NUEVO PROSPECTO</div>
+                <form className='newProspectoFormform'>
+                    <div className='newProspectoForm1'>
+                        <div className='newProspectoFormInput empresa'>
                             <label >EMPRESA</label>
                             <br />
                             <input type="text" />
                         </div>
-                        <div className='newClientFormInput nombre'>
+                        <div className='newProspectoFormInput nombre'>
                             <label>NOMBRE</label>
                             <br />
                             <input type="text" />
                         </div>
                     </div>
-                    <div className='newClientForm1'>
-                        <div className='newClientFormInput correo'>
+                    <div className='newProspectoForm1'>
+                        <div className='newProspectoFormInput correo'>
                             <label>CORREO</label>
                             <br />
                             <input type="text" />
                         </div>
-                        <div className='newClientFormInput telefono'>
+                        <div className='newProspectoFormInput telefono'>
                             <label>TELEFONO</label>
                             <br />
                             <input type="text" />
                         </div>
-                        <div className='newClientFormInput puesto'>
+                        <div className='newProspectoFormInput puesto'>
                             <label>PUESTO</label>
                             <br />
                             <select name="puesto" id="puesto" >
@@ -42,20 +42,20 @@ const NewClientForm = () => {
                             </select>
                         </div>
                     </div>
-                    <div className='newClientForm1'>
-                        <div className='newClientFormInput etiqueta'>
+                    <div className='newProspectoForm1'>
+                        <div className='newProspectoFormInput etiqueta'>
                             <label>ETIQUETA</label>
                             <br />
                             <input type="text" />
                         </div>
                     </div>
                 </form>
-                <div onClick={console.log("aaaaaaa")} className="newClientFormButtom">
-                    <div className='newClientFormButtomText'> GUARDAR</div>
+                <div onClick={console.log("aaaaaaa")} className="newProspectoFormButtom">
+                    <div className='newProspectoFormButtomText'> GUARDAR</div>
                 </div>
             </div>
         </div>
     )
 }
 
-export default NewClientForm
+export default NewProspectoForm
