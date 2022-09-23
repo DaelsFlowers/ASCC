@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom';
 import "./Login.css"
 
 export default class Login extends React.Component {
@@ -39,6 +40,7 @@ export default class Login extends React.Component {
 
     handleButtonClicked() {
         console.log(this.state.customer);
+
     }
 
     render() {
@@ -67,9 +69,11 @@ export default class Login extends React.Component {
                             </label>
                         </div>
                     </form>
-                    <div className='button' onClick={this.handleButtonClicked.bind(this)}>
-                        <div class="btn-grad">LOGIN</div>
-                    </div>
+                    <NavLink to='/home'>
+                        <div className='button' onClick={this.handleButtonClicked.bind(this)}>
+                            <div class="btn-grad">LOGIN</div>
+                        </div>
+                    </NavLink>
                 </div>
 
             </div>
