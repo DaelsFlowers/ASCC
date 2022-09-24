@@ -93,13 +93,13 @@ const ReportesContent = () => {
                             Total: {Total}
                         </div>
                         <div className='Totalmsg'>
-                            {Tcall} <img src={call} />
+                            {Tcall} <img src={call} alt="mail" />
                         </div>
                         <div className='TotalMail'>
-                            {Tmsg}<img src={msg} />
+                            {Tmsg}<img src={msg} alt="mail" />
                         </div>
                         <div className='TotalCall'>
-                            {Tmail}<img src={mail} />
+                            {Tmail}<img src={mail} alt="mail" />
                         </div>
                     </div>
                 </div>
