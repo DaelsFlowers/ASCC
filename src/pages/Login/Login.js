@@ -1,29 +1,30 @@
-import React, { useState } from 'react'
+import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 import "./Login.css"
 
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from "../components/firebase"
 
-const Login = () => {
-    const logintext = true
-    const [user, setUser] = useState({
-        name: "",
-        password: ""
-    })
-    const handleChange = ({ target: { name, value } }) => {
-        setUser({ ...user, [name]: value })
+
+function Login({
+    setAuthState,
+    setUser
+}) {
+    const [email, setEmail] = React.useState('');
+    const [password, setPassword] = React.useState('');
+
+    const handleLogin = () => {
+        if (email !== null && password !== null) {
+            signInWithEmailAndPassword(auth, email, password)
+                .then(() => {
+                    setUser(email)
+                    setAuthState('home')
+                })
+                .catch((err) => alert(err));
+        }
     }
-
-    // const handleSubmit = e => {
-    //     e.preventDefault()
-    // }
-    // const signup = (name, password) => {
-    //     createUserWithEmailAndPassword(Authfire, name, password)
-    // }
-
-
     return (
         <div className='login'>
-
             <div class="container">
                 <div className='top'>
                     <div className='loginlogo'>ASCC</div>
@@ -33,32 +34,31 @@ const Login = () => {
                 <form >
                     <div class="omrs-input-group">
                         <label class="omrs-input-underlined">
-                            <input required type={"text"} name="name" id='name' onChange={handleChange} />
+                            <input required type={"email"}
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)} />
                             <span class="omrs-input-label"  >Username</span>
                         </label>
                     </div>
                     <br />
                     <div class="omrs-input-group">
                         <label class="omrs-input-underlined">
-                            <input required type={"password"} name="password" id='password' onChange={handleChange} />
+                            <input required type={"password"}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)} />
                             <span class="omrs-input-label" >Password</span>
                         </label>
                     </div>
-                    <div className='button' >
-                        <NavLink to={logintext ? '/home' : "/"}>
-                            <div class="btn-grad">
-                                LOGIN
-                            </div>
-                        </NavLink>
+                    <div className='button' onClick={handleLogin} >
+                        <div class="btn-grad">
+                            LOGIN
+                        </div>
                     </div>
                 </form>
             </div>
-
         </div>
-
     )
 }
-
 export default Login
 
 

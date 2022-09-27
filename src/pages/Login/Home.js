@@ -5,7 +5,7 @@ import Description from './Description';
 import Logo from './Logo';
 
 
-const Home = () => {
+export default function Home() {
     return (
         <>
             <Description />
@@ -15,5 +15,3 @@ const Home = () => {
         </>
     )
 }
-
-export default Home

@@ -1,5 +1,6 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import './App.css';
+import React from 'react';
+import { auth } from "./pages/components/firebase"
+import { onAuthStateChanged } from 'firebase/auth';
 
 //#region pages
 import Home from "./pages/Login/Home"
@@ -9,49 +10,36 @@ import NewProspecto from "./pages/NewProspecto/NewProspecto"
 import Seguimiento from './pages/Seguimiento/Seguimiento';
 import Reporte from './pages/Reportes/Reportes';
 import Empleados from './pages/Empleados/Empleados';
-import NotFoundPage from './pages/components/NotFoundPage/NotFoundPage';
 //#endregion
 
 function App() {
-  return (
-    <>
 
+  const [user, setUser] = React.useState(null);
+  const [authState, setAuthState] = React.useState(null);
 
+  React.useEffect(() => {
+    const unSubcribeAuth = onAuthStateChanged(auth, async authenticatedUser => {
+      if (authenticatedUser) {
+        setUser(authenticatedUser.email)
+        setAuthState("home");
+      } else {
+        setUser(null);
+        setAuthState("login");
+      }
+    })
+    return unSubcribeAuth;
+  }, [user])
 
+  if (authState === null) return <div>loading...</div>
+  if (authState === 'login') return <Home setAuthState={setAuthState} setUser={setUser} />
+  if (authState === 'NewClient') return <NewClient setAuthState={setAuthState} setUser={setUser} />
+  if (authState === 'NewProspecto') return <NewProspecto setAuthState={setAuthState} setUser={setUser} />
+  if (authState === 'Seguimiento') return <Seguimiento setAuthState={setAuthState} setUser={setUser} />
+  if (authState === 'Reporte') return <Reporte setAuthState={setAuthState} setUser={setUser} />
+  if (authState === 'Empleados') return <Empleados setAuthState={setAuthState} setUser={setUser} />
+  if (authState === 'home') return <Main setAuthState={setAuthState} setUser={setUser} />
+  if (user) return <Main user={user} setAuthState={setAuthState} setUser={setUser} />
 
-      <BrowserRouter>
-        <div className="App">
-          <Routes>
-            <Route path='/' element={
-              <Home />
-            }></Route>
-            <Route path='/login' element={
-              <Home />
-            }></Route>
-            <Route path='/home' element={<Main />} />
-            <Route path='/nuevo_cliente' element={
-              <NewClient />
-            }></Route>
-            <Route path='/nuevo_prospecto' element={
-              <NewProspecto />
-            }></Route>
-            <Route path='/seguimiento' element={
-              <Seguimiento />
-            }></Route>
-            <Route path='/reportes' element={
-              <Reporte />
-            }></Route>
-            <Route path='/empleados' element={
-              <Empleados />
-            }></Route>
-            <Route path='*' element={
-              <NotFoundPage />
-            }></Route>
-          </Routes>
-        </div>
-      </BrowserRouter>
-    </>
-  );
 }
 
 export default App;

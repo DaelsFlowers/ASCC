@@ -1,52 +1,55 @@
 import React from 'react'
-import { NavLink } from "react-router-dom";
 import "./navbar.css"
-const Navbar = () => {
+
+import { signOut } from 'firebase/auth';
+import { auth } from '../firebase';
+
+export default function Navbar({
+    setAuthState,
+    setUser
+}) {
+
+    const signOutHandler = () => {
+        signOut(auth)
+            .then(() => {
+                setUser(null);
+                setAuthState('login');
+            })
+            .catch((err) => console.log(err));
+    }
+
     return (
-
-
         <div className='navbar'>
-            <NavLink to="/home">
-                <h1>ASCC</h1>
-            </NavLink>
+
+            <h1>ASCC</h1>
+
             <ol className='navbarlist'>
-                <NavLink className={({ isActive }) => (isActive ? "active" : "desactive")}
-                    to="/nuevo_cliente">
-                    <li>
+                <div className={({ isActive }) => (isActive ? "active" : "desactive")}>
+                    <li onClick={() => setAuthState('NewClient')}>
                         Nuevo Cliente
                     </li>
-                </NavLink>
-                <NavLink to="/nuevo_prospecto">
-                    <li>
+                    <li onClick={() => setAuthState('NewProspecto')}>
                         Nuevo Prospecto
                     </li>
-                </NavLink>
-                <NavLink to="/seguimiento">
-                    <li>
+                    <li onClick={() => setAuthState('Seguimiento')}>
                         Segumiento
                     </li>
-                </NavLink>
-                <NavLink to="/reportes">
-                    <li>
+                    <li onClick={() => setAuthState('Reporte')}>
                         Reportes
                     </li>
-                </NavLink>
-                <NavLink to="/empleados">
-                    <li>
+                    <li onClick={() => setAuthState('Empleados')}>
                         Empleados
                     </li>
-                </NavLink>
+                </div>
             </ol>
             <div className='salir'>
-                <NavLink to="/">
-                    <h2>
-                        Salir
-                    </h2>
-                </NavLink>
+                <h2 onClick={signOutHandler}>
+                    Salir
+                </h2>
             </div>
         </div>
 
     )
+
 }
 
-export default Navbar
