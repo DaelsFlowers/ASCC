@@ -3,38 +3,68 @@ import "./empleadosContent.css"
 
 import { auth } from "../components/firebase"
 import { createUserWithEmailAndPassword } from 'firebase/auth'
+import EmpleadosDataService from "../services/Empleados.services"
+import EmpleadosList from './EmpleadosList'
 
 export default function EmpleadosContent({
     setAuthState,
     setUser
 }) {
 
-    const idEmpleado = 1;
-    const fechaEmpleado = Date();
-    const contactoEmpleado = 1;
-    const EmpresaEmpleado = 1;
-    const EstatusEmpleado = 1;
-    const anotacionesEmpleado = 1;
+    const event = new Date();
 
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [password1, setPassword1] = React.useState('');
+    const [Cclientes, setCclientes] = React.useState(0);
+    const [Cprospectos, setCprospectos] = React.useState(0);
+    const [date, setdate] = React.useState(event.toDateString());
 
-    const onSignUpHandle = () => {
-        if (email !== null && password !== null) {
-            if (password1 === password) {
-                createUserWithEmailAndPassword(auth, email, password)
-                    .then((user) => {
-                        setUser(user.user.email);
-                        setAuthState('home')
-                    })
-                    .catch((err) => {
-                        alert(err)
-                    })
-            } else {
-                alert("Password is Incorrect")
-            }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (email === "" ||
+            password === "" ||
+            password1 === "" ||
+            Cclientes === "" ||
+            Cprospectos === "" ||
+            date === "") {
+            return;
         }
+        const newEmpleado = {
+            email,
+            password,
+            Cclientes,
+            Cprospectos,
+            date,
+        }
+        console.log(newEmpleado)
+
+        try {
+            await EmpleadosDataService.addClient(newEmpleado)
+            if (email !== null && password !== null) {
+                if (password1 === password) {
+                    createUserWithEmailAndPassword(auth, email, password)
+                        .then((user) => {
+                            setUser(user.user.email);
+                            setAuthState('home')
+
+                        })
+                        .catch((err) => {
+                            alert("GUARDADO CORRECTAMENTE")
+                        })
+                } else {
+                    alert("Password is Incorrect")
+                }
+            }
+        } catch (err) {
+            console.log(err)
+        }
+        setEmail("");
+        setPassword("");
+        setPassword1("");
+        setCclientes("");
+        setCprospectos("");
+        setdate("");
     }
 
     return (
@@ -61,7 +91,7 @@ export default function EmpleadosContent({
                                 onChange={(e) => setPassword1(e.target.value)} type={"password"} />
                         </div>
                         <div className='additem'>
-                            <div onClick={onSignUpHandle} className="addbotton">
+                            <div onClick={handleSubmit} className="addbotton">
                                 <div className='addbottonText'>AGREGAR</div>
                             </div>
                         </div>
@@ -71,7 +101,7 @@ export default function EmpleadosContent({
                             </input>
                         </div>
                         <div className='additem'>
-                            <div onClick={console.log("aaaaaaa")} className="addbotton">
+                            <div className="addbotton">
                                 <div className='addbottonText'>BUSCAR</div>
                             </div>
                         </div>
@@ -82,25 +112,14 @@ export default function EmpleadosContent({
                 <div className='EmpleadoContentTags'>
                     <div className='gridEmpleado'>
                         <div className='items'>#</div>
-                        <div className='items'>NOMBRE</div>
+                        <div className='items'>CORREO</div>
                         <div className='items'>CONTRASEÑA</div>
                         <div className='items'>NO.CLIENTES</div>
                         <div className='items'>NO.PROSPECTOS</div>
                         <div className='items'>FECHA DE INICIO</div>
                     </div>
                 </div>
-                <div className='sqllist'>
-                    <div className='EmpleadoContentList'>
-                        <div className='gridEmpleadoList'>
-                            <div className='itemsList'>{idEmpleado}</div>
-                            <div className='itemsList'>{fechaEmpleado}</div>
-                            <div className='itemsList'>{contactoEmpleado}</div>
-                            <div className='itemsList'>{EmpresaEmpleado}</div>
-                            <div className='itemsList'>{EstatusEmpleado}</div>
-                            <div className='itemsList'>{anotacionesEmpleado}</div>
-                        </div>
-                    </div>
-                </div>
+                <EmpleadosList />
             </div>
         </div>
     )

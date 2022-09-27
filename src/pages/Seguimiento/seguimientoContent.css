@@ -94,6 +94,14 @@
   color: #000000;
 }
 
+.itemsListEstatus {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #000000;
+}
 .listSeguimineto {
   background-color: #fff;
 }

@@ -9,18 +9,18 @@ import Seguimiento from './Seguimiento/Seguimiento';
 import Reporte from './Reportes/Reportes';
 import Empleados from './Empleados/Empleados';
 
-const Principal = () => {
+const Principal = (props) => {
     return (
         <BrowserRouter>
             <Routes>
                 <Route>
-                    <Route path="/" element={<Main />} />
-                    <Route path="/Main" element={<Main />} />
-                    <Route path="/NewClient" element={<NewClient />} />
-                    <Route path="/NewProspecto" element={<NewProspecto />} />
-                    <Route path="/Seguimiento" element={<Seguimiento />} />
-                    <Route path="/Reporte" element={<Reporte />} />
-                    <Route path="/Empleados" element={<Empleados />} />
+                    <Route path="/" element={<Main />} prop={props} />
+                    <Route path="/Main" element={<Main />} prop={props} />
+                    <Route path="/NewClient" element={<NewClient prop={props} />} />
+                    <Route path="/NewProspecto" element={<NewProspecto prop={props} />} />
+                    <Route path="/Seguimiento" element={<Seguimiento prop={props} />} />
+                    <Route path="/Reporte" element={<Reporte prop={props} />} />
+                    <Route path="/Empleados" element={<Empleados prop={props} />} />
                 </Route>
             </Routes>
         </BrowserRouter>
