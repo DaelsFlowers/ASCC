@@ -17,7 +17,7 @@ const SeguimientoContent = () => {
 
 
     const [RegisterId, setRegisterId] = useState("");
-
+    console.log(setRegisterId)
 
     function getRegisterIdHandler() {
         return (
