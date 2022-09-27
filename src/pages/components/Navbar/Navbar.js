@@ -1,10 +1,11 @@
 import React from 'react'
+import { NavLink } from "react-router-dom";
 import "./navbar.css"
 
 import { signOut } from 'firebase/auth';
-import { auth } from '../firebase';
+import { auth } from "../firebase"
 
-export default function Navbar({
+export default function Home({
     setAuthState,
     setUser
 }) {
@@ -19,37 +20,46 @@ export default function Navbar({
     }
 
     return (
+
+
         <div className='navbar'>
-
-            <h1>ASCC</h1>
-
+            <NavLink to="/Main">
+                <h1>ASCC</h1>
+            </NavLink>
             <ol className='navbarlist'>
-                <div className={({ isActive }) => (isActive ? "active" : "desactive")}>
-                    <li onClick={() => setAuthState('NewClient')}>
+                <NavLink className={({ isActive }) => (isActive ? "active" : "desactive")}
+                    to="/NewClient">
+                    <li>
                         Nuevo Cliente
                     </li>
-                    <li onClick={() => setAuthState('NewProspecto')}>
+                </NavLink>
+                <NavLink to="/NewProspecto">
+                    <li>
                         Nuevo Prospecto
                     </li>
-                    <li onClick={() => setAuthState('Seguimiento')}>
+                </NavLink>
+                <NavLink to="/Seguimiento">
+                    <li>
                         Segumiento
                     </li>
-                    <li onClick={() => setAuthState('Reporte')}>
+                </NavLink>
+                <NavLink to="/Reporte">
+                    <li>
                         Reportes
                     </li>
-                    <li onClick={() => setAuthState('Empleados')}>
+                </NavLink>
+                <NavLink to="/Empleados">
+                    <li>
                         Empleados
                     </li>
-                </div>
+                </NavLink>
             </ol>
-            <div className='salir'>
-                <h2 onClick={signOutHandler}>
+            <div className='salir' onClick={signOutHandler}>
+                <h2>
                     Salir
                 </h2>
             </div>
         </div>
 
     )
-
 }
-

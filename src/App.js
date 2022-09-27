@@ -1,15 +1,11 @@
+
 import React from 'react';
 import { auth } from "./pages/components/firebase"
 import { onAuthStateChanged } from 'firebase/auth';
 
 //#region pages
 import Home from "./pages/Login/Home"
-import Main from './pages/Main/Main';
-import NewClient from './pages/newClient/NewClient';
-import NewProspecto from "./pages/NewProspecto/NewProspecto"
-import Seguimiento from './pages/Seguimiento/Seguimiento';
-import Reporte from './pages/Reportes/Reportes';
-import Empleados from './pages/Empleados/Empleados';
+import Principal from './pages/Principal';
 //#endregion
 
 function App() {
@@ -32,13 +28,8 @@ function App() {
 
   if (authState === null) return <div>loading...</div>
   if (authState === 'login') return <Home setAuthState={setAuthState} setUser={setUser} />
-  if (authState === 'NewClient') return <NewClient setAuthState={setAuthState} setUser={setUser} />
-  if (authState === 'NewProspecto') return <NewProspecto setAuthState={setAuthState} setUser={setUser} />
-  if (authState === 'Seguimiento') return <Seguimiento setAuthState={setAuthState} setUser={setUser} />
-  if (authState === 'Reporte') return <Reporte setAuthState={setAuthState} setUser={setUser} />
-  if (authState === 'Empleados') return <Empleados setAuthState={setAuthState} setUser={setUser} />
-  if (authState === 'home') return <Main setAuthState={setAuthState} setUser={setUser} />
-  if (user) return <Main user={user} setAuthState={setAuthState} setUser={setUser} />
+  if (authState === 'home') return <Principal setAuthState={setAuthState} setUser={setUser} />
+  if (user) return <Principal user={user} setAuthState={setAuthState} setUser={setUser} />
 
 }
 

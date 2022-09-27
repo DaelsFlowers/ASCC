@@ -1,7 +1,14 @@
 import React from 'react'
 import "./empleadosContent.css"
 
-const EmpleadosContent = () => {
+import { auth } from "../components/firebase"
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+
+export default function EmpleadosContent({
+    setAuthState,
+    setUser
+}) {
+
     const idEmpleado = 1;
     const fechaEmpleado = Date();
     const contactoEmpleado = 1;
@@ -9,7 +16,26 @@ const EmpleadosContent = () => {
     const EstatusEmpleado = 1;
     const anotacionesEmpleado = 1;
 
+    const [email, setEmail] = React.useState('');
+    const [password, setPassword] = React.useState('');
+    const [password1, setPassword1] = React.useState('');
 
+    const onSignUpHandle = () => {
+        if (email !== null && password !== null) {
+            if (password1 === password) {
+                createUserWithEmailAndPassword(auth, email, password)
+                    .then((user) => {
+                        setUser(user.user.email);
+                        setAuthState('home')
+                    })
+                    .catch((err) => {
+                        alert(err)
+                    })
+            } else {
+                alert("Password is Incorrect")
+            }
+        }
+    }
 
     return (
         <div className='EmpleadoContent'>
@@ -20,22 +46,22 @@ const EmpleadosContent = () => {
                 <div className='addcontent'>
                     <div className='addgrid'>
                         <div className='additem'>
-                            NOMBRE
-                            <input className='addaplicate'>
-                            </input>
+                            CORREO
+                            <input className='addaplicate' value={email}
+                                onChange={(e) => setEmail(e.target.value)} type={"email"} />
                         </div>
                         <div className='additem'>
                             CONTRASEÑA
-                            <input className='addaplicate'>
-                            </input>
+                            <input className='addaplicate' value={password}
+                                onChange={(e) => setPassword(e.target.value)} type={"password"} />
                         </div>
                         <div className='additem'>
                             CONTRASEÑA
-                            <input className='addaplicate'>
-                            </input>
+                            <input className='addaplicate' value={password1}
+                                onChange={(e) => setPassword1(e.target.value)} type={"password"} />
                         </div>
                         <div className='additem'>
-                            <div onClick={console.log("aaaaaaa")} className="addbotton">
+                            <div onClick={onSignUpHandle} className="addbotton">
                                 <div className='addbottonText'>AGREGAR</div>
                             </div>
                         </div>
@@ -79,5 +105,3 @@ const EmpleadosContent = () => {
         </div>
     )
 }
-
-export default EmpleadosContent
