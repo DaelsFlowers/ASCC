@@ -8,6 +8,7 @@ import NewProspecto from "./NewProspecto/NewProspecto"
 import Seguimiento from './Seguimiento/Seguimiento';
 import Reporte from './Reportes/Reportes';
 import Empleados from './Empleados/Empleados';
+import Editregisters from "./EditPage/Editregisters";
 
 const Principal = (props) => {
     return (
@@ -21,6 +22,7 @@ const Principal = (props) => {
                     <Route path="/Seguimiento" element={<Seguimiento prop={props} />} />
                     <Route path="/Reporte" element={<Reporte prop={props} />} />
                     <Route path="/Empleados" element={<Empleados prop={props} />} />
+                    <Route path="/EditarRegistro" element={<Editregisters prop={props} />} />
                 </Route>
             </Routes>
         </BrowserRouter>

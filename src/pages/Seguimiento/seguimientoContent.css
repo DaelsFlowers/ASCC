@@ -110,3 +110,7 @@
   overflow: auto;
   max-height: 43rem;
 }
+
+.modal {
+  font-size: 250px;
+}

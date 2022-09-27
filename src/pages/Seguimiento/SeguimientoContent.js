@@ -1,14 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import "./seguimientoContent.css"
+import { NavLink } from "react-router-dom";
 
 import ClientDataService from "../services/Clients.services"
 import ProspectoDataService from "../services/Prospectos.services"
-
 
 const SeguimientoContent = () => {
 
     const [clients, setClients] = useState([]);
     const [seguimientoCategoria, setSeguimientoCategoria] = useState([]);
+
+
+    const [RegisterId, setRegisterId] = useState("");
+
+
+    const getRegisterIdHandler = (id) => {
+        setRegisterId(id)
+        console.log(id)
+        return id
+    }
 
     useEffect(() => {
         if (seguimientoCategoria === "Clientes") {
@@ -56,29 +66,28 @@ const SeguimientoContent = () => {
                             <div className='items'>FAVORITOS</div>
                         </div>
                     </div>
-                    {clients.map((doc, index) => {
-                        return (
-                            <div className='sqllist'>
-                                <div className='SeguiminetoContentList' key={doc.id}>
-                                    <div className='gridSeguimientoList' >
-                                        <div className='itemsList'>{index + 1}</div>
-                                        <div className='itemsList'>{doc.nombre}</div>
-                                        <div className='itemsList'>{doc.empresa}</div>
-                                        <div className='itemsList'>{doc.puesto}</div>
-                                        <div className='itemsList'>{doc.email + " / " + doc.phone}</div>
-                                        <div className='itemsListEstatus'>
-                                            {doc.estatus}
+                    <NavLink getRegisterId={getRegisterIdHandler} to={{ pathname: "/EditarRegistro", state: { tittle: RegisterId } }}>
+                        {clients.map((doc, index) => {
+                            return (
+                                <div className='sqllist' onClick={(e) => { getRegisterIdHandler(doc.id) }}>
+                                    <div className='SeguiminetoContentList' key={doc.id} >
+                                        <div className='gridSeguimientoList'  >
+                                            <div className='itemsList'>{index + 1}</div>
+                                            <div className='itemsList'>{doc.nombre}</div>
+                                            <div className='itemsList'>{doc.empresa}</div>
+                                            <div className='itemsList'>{doc.puesto}</div>
+                                            <div className='itemsList'>{doc.email + " / " + doc.phone}</div>
+                                            <div className='itemsListEstatus'>
+                                                {doc.estatus}
+                                            </div>
+                                            <div className='itemsList'>{doc.etiqueta}</div>
+                                            <input disabled={true} type={"checkbox"} checked={doc.favorito} className='itemsList checkboxitem' />
                                         </div>
-                                        <div className='itemsList'>{doc.etiqueta}</div>
-                                        <input disabled={true} type={"checkbox"} checked={doc.favorito} className='itemsList checkboxitem' />
                                     </div>
                                 </div>
-                            </div>
-                        )
-                    })}
-
-
-
+                            )
+                        })}
+                    </NavLink>
                 </div>
             </div>
         </>
