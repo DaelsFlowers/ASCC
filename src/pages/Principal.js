@@ -8,7 +8,7 @@ import NewProspecto from "./NewProspecto/NewProspecto"
 import Seguimiento from './Seguimiento/Seguimiento';
 import Reporte from './Reportes/Reportes';
 import Empleados from './Empleados/Empleados';
-import Editregisters from "./EditPage/Editregisters";
+import Editregisters from "./Seguimiento/Editregisters";
 
 const Principal = (props) => {
     return (

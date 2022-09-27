@@ -5,6 +5,11 @@ import { NavLink } from "react-router-dom";
 import ClientDataService from "../services/Clients.services"
 import ProspectoDataService from "../services/Prospectos.services"
 
+import Mycomponent from './Editregisters';
+
+
+
+
 const SeguimientoContent = () => {
 
     const [clients, setClients] = useState([]);
@@ -14,10 +19,12 @@ const SeguimientoContent = () => {
     const [RegisterId, setRegisterId] = useState("");
 
 
-    const getRegisterIdHandler = (id) => {
-        setRegisterId(id)
-        console.log(id)
-        return id
+    function getRegisterIdHandler() {
+        return (
+            <div>
+                <Mycomponent name="daysi" />
+            </div>
+        );
     }
 
     useEffect(() => {
@@ -66,7 +73,7 @@ const SeguimientoContent = () => {
                             <div className='items'>FAVORITOS</div>
                         </div>
                     </div>
-                    <NavLink getRegisterId={getRegisterIdHandler} to={{ pathname: "/EditarRegistro", state: { tittle: RegisterId } }}>
+                    <NavLink to={{ pathname: "/EditarRegistro", state: { tittle: RegisterId } }}>
                         {clients.map((doc, index) => {
                             return (
                                 <div className='sqllist' onClick={(e) => { getRegisterIdHandler(doc.id) }}>
